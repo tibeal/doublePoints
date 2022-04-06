@@ -181,7 +181,7 @@ opps.add(
     )
 );
 
-opps.get(opps.size).Blocked__c = true;
+opps.get(opps.size()).Blocked__c = true;
 
 insert opps;
 
@@ -189,3 +189,14 @@ System.debug('Opps inserted: ' +
     JSON.serialize(new Map<Id,Opportunity>(opps).keySet()).replaceAll('"','\'')
 );
 ```
+
+This code creates:
+- 2 members
+- 2 opportunities the members
+- 1 opportunity without member and with Blocked__c = true
+
+After executing the code, open the log and filter by debugs
+Get the 4 ids that will appear in the log
+
+| ![Debug Log](https://github.com/tibeal/doublePoints/blob/master/assets/doublePoints_debugLog.png) |
+| ------ |
