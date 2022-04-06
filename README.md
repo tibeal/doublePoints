@@ -53,7 +53,7 @@ trigger Opportunities on Opportunity (before update, after update){
 ```
 
 ### Business Rules
-- Whenever an opportunity is updated to Stage = Closed Won an Event with Type = Opportunity is created and incentivized
+- Whenever an opportunity is updated to Stage = Closed Won a Fielo Event with Type = Opportunity is created and incentivized
 - There is a validation in the after trigger of opportunity:
     - Opportunities with the field Blocked = true when updated throw an error "Blocked Opportunities are not allowed to be modified."
 

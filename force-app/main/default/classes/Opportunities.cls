@@ -20,7 +20,7 @@ public class Opportunities {
         for (Opportunity opp : records) {
             Opportunity oldRecord = existingRecords.get(opp.Id);
             if (opp.Blocked__c == true && oldRecord.Blocked__c == true) {
-                opp.addError('Blocked Opportunities are not allowed to be updated.');
+                opp.addError('Blocked Opportunities are not allowed to be modified.');
             }
         }
     }
