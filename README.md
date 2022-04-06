@@ -192,7 +192,7 @@ System.debug('Opps inserted: ' +
 
 This code creates:
 - 2 members
-- 2 opportunities the members
+- 2 opportunities for each member
 - 1 opportunity without member and with Blocked__c = true
 
 After executing the code, open the log and filter by debugs
