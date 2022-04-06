@@ -96,7 +96,7 @@ opps.add(
     )
 );
 
-opps.get(opps.size()).Blocked__c = true;
+opps.get(opps.size()-1).Blocked__c = true;
 
 insert opps;
 
