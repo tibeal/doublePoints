@@ -1,19 +1,64 @@
-# Salesforce DX Project: Next Steps
+# Fielo Double Points Issue
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+## Pre Conditions:
+- Activate FieloPLT Library
+- Activate Local Library
 
-## How Do You Plan to Deploy Your Changes?
+### Metadata
+- Two custom fields in Opportunity:
+    - Blocked (checkbox, default: false)
+    - Member (Lookup(FieloPLT__Member__c))
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+- Classes
+    - [Opportunity.cls](https://github.com/tibeal/doublePoints/blob/master/force-app/main/default/classes/Opportunities.cls)
+```apex
+public class Opportunities {
 
-## Configure Your Salesforce DX Project
+    public static void onBeforeUpdate(List<Opportunity> records, Map<Id, Opportunity> existingRecords) {
+        List<FieloPLT__Event__c> oppEvents = new List<FieloPLT__Event__c>();
+        for (Opportunity opp : records) {
+            Opportunity oldRecord = existingRecords.get(opp.Id);
+            if (opp.StageName == 'Closed Won') {
+                oppEvents.add(
+                    new FieloPLT__Event__c(
+                        FieloPLT__Type__c = 'Opportunity',
+                        FieloPLT__Member__c = opp.Member__c
+                    )
+                );
+            }
+        }
+        insert oppEvents;
+    }
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+    public static void onAfterUpdate(List<Opportunity> records, Map<Id, Opportunity> existingRecords) {
+        for (Opportunity opp : records) {
+            Opportunity oldRecord = existingRecords.get(opp.Id);
+            if (opp.Blocked__c == true && oldRecord.Blocked__c == true) {
+                opp.addError('Blocked Opportunities are not allowed to be updated.');
+            }
+        }
+    }
+}
+```
+- Triggers
+    - [Opportunity.trigger](https://github.com/tibeal/doublePoints/blob/master/force-app/main/default/triggers/Opportunities.trigger)
+```apex
+trigger Opportunities on Opportunity (before update, after update){
+	if(Trigger.isBefore && Trigger.isUpdate) {
+		Opportunities.onBeforeUpdate(Trigger.new, Trigger.oldMap);
+	} else if(Trigger.isAfter && Trigger.isUpdate){
+		Opportunities.onAfterUpdate(Trigger.new, Trigger.oldMap);
+	}
+}
+```
 
-## Read All About It
+### Business Rules
+- Whenever an opportunity is updated to Stage = Closed Won an Event with Type = Opportunity is created and incentivized
+- There is a validation in the after trigger of opportunity:
+    - Opportunities with the field Blocked = true when updated throw an error "Blocked Opportunities are not allowed to be modified."
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
-# doublePoints
+### Program Configuration
+- 1 promotion
+- 1 Rule on Generate event and win
+    - 1 point per event
+
