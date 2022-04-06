@@ -1,7 +1,7 @@
 # Fielo Double Points Issue
 
 ## Pre Conditions:
-- Install FieloPLT 2.114.28 (or any version before 2.114.48)
+- Install FieloPLT [2.114.28](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t2J000000ggpu) (or any version before 2.114.48)
 - Activate FieloPLT Library
 - Activate Local Library
 
