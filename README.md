@@ -288,5 +288,5 @@ Both members receive 4 points
 
 ### Member balance VS Member Points Balance Missmatch
 
-| ![Member Balance](https://github.com/tibeal/doublePoints/blob/master/assets/doublePoints_memberBalance.png) | ![Member Balance](https://github.com/tibeal/doublePoints/blob/master/assets/doublePoints_pointsBalance.png) |
+| ![Member Balance](https://github.com/tibeal/doublePoints/blob/master/assets/doublePoints_memberBalance.png) | ![Member Balance](https://github.com/tibeal/doublePoints/blob/master/assets/doublePoints_pointsBalance2.png) |
 | ------ | ------ |
