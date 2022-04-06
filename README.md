@@ -1,6 +1,7 @@
 # Fielo Double Points Issue
 
 ## Pre Conditions:
+- Install FieloPLT 2.114.28 (or any version before 2.114.48)
 - Activate FieloPLT Library
 - Activate Local Library
 
@@ -70,12 +71,17 @@ trigger Opportunities on Opportunity (before update, after update){
 Create the Opportunities:
 Run the following code in the anonymous window
 Gear Icon on top right corner > Developer Console
+
 | ![Developer Console](https://github.com/tibeal/doublePoints/blob/master/assets/doublePoints_devConsole.png) |
 | ------ |
+
 On the developer console > Debug > Open Execute Anonymous Window
+
 | ![Execute Anonymous Window](https://github.com/tibeal/doublePoints/blob/master/assets/doublePoints_executeApex.png) |
 | ------ |
+
 Execute the code [createOpps.apex](https://github.com/tibeal/doublePoints/blob/master/scripts/apex/createOpps.apex)
+
 ```apex
 public static String guid(){
     Blob b = Crypto.GenerateAESKey(128);
