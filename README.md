@@ -62,3 +62,5 @@ trigger Opportunities on Opportunity (before update, after update){
 - 1 Rule on Generate event and win
     - 1 point per event
 
+| ![Promotion](https://github.com/tibeal/doublePoints/blob/master/assets/doublePoints_Promotion.png) |
+| ------ |
