@@ -1,3 +1,9 @@
+
+Set<Id> oppIds = new Set<Id>{
+    // CHANGE ME
+    '0068c00000pvOGOAA2','0068c00000pvOGPAA2','0068c00000pvOGQAA2','0068c00000pvOGRAA2','0068c00000pvOGSAA2'
+};
+
 public static String guid(){
     Blob b = Crypto.GenerateAESKey(128);
     String h = EncodingUtil.ConvertTohex(b);
@@ -28,10 +34,6 @@ public static string toBase62(Long n) {
         return String.join(digits,'');
     }
 }
-
-Set<Id> oppIds = new Set<Id>{
-    '0068c00000pvNmGAAU','0068c00000pvNmHAAU','0068c00000pvNmIAAU','0068c00000pvNmJAAU','0068c00000pvNmKAAU'
-};
 
 List<Opportunity> opps = new List<Opportunity>();
 for(Opportunity opp : [SELECT Id FROM Opportunity WHERE Id IN :oppIds]){
