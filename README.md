@@ -282,9 +282,11 @@ Both members receive 2 points
 ## Current result
 Both members receive 4 points
 
-Error:
+### Error:
 | ![Query Results 2](https://github.com/tibeal/doublePoints/blob/master/assets/doublePoints_queryResult2.png) |
 | ------ |
+
+### Member balance VS Member Points Balance Missmatch
 
 | ![Member Balance](https://github.com/tibeal/doublePoints/blob/master/assets/doublePoints_memberBalance.png) | ![Member Balance](https://github.com/tibeal/doublePoints/blob/master/assets/doublePoints_pointsBalance.png) |
 | ------ | ------ |
