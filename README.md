@@ -285,3 +285,6 @@ Both members receive 4 points
 Error:
 | ![Query Results 2](https://github.com/tibeal/doublePoints/blob/master/assets/doublePoints_queryResult2.png) |
 | ------ |
+
+| ![Member Balance](https://github.com/tibeal/doublePoints/blob/master/assets/doublePoints_memberBalance.png) | ![Member Balance](https://github.com/tibeal/doublePoints/blob/master/assets/doublePoints_pointsBalance.png) |
+| ------ | ------ |
